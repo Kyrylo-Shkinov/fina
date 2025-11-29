@@ -2,7 +2,7 @@
   "name": "Фінансовий Планувальник",
   "short_name": "Фінанси",
   "description": "Платформа для обліку та планування фінансів",
-  "start_url": "/",
+  "start_url": "/fina/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#3b82f6",
