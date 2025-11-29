@@ -16,27 +16,26 @@ const nextConfig = {
 };
 
 // PWA налаштування
-// next-pwa генерує service worker тільки під час production build
-// В development режимі sw.js може не існувати - це нормально
-// Використовуємо CommonJS require для next-pwa (він не підтримує ES modules)
+// Вимкнуто для GitHub Pages через конфлікти з basePath
+// next-pwa може конфліктувати з basePath при static export
 let config = withNextIntl(nextConfig);
 
-// Додаємо PWA тільки в production
-if (process.env.NODE_ENV === 'production') {
-  try {
-    const withPWA = require('next-pwa')({
-      dest: 'public',
-      register: true,
-      skipWaiting: true,
-      runtimeCaching: [], // Без офлайн кешування
-      disable: process.env.NODE_ENV === 'development',
-    });
-    config = withPWA(config);
-  } catch (error) {
-    // Якщо next-pwa не встановлено або є помилка, продовжуємо без PWA
-    console.warn('PWA configuration skipped:', error.message);
-  }
-}
+// PWA тимчасово вимкнено для GitHub Pages
+// Якщо потрібно увімкнути, налаштуйте правильно для basePath
+// if (process.env.NODE_ENV === 'production' && !process.env.GITHUB_PAGES) {
+//   try {
+//     const withPWA = require('next-pwa')({
+//       dest: 'public',
+//       register: true,
+//       skipWaiting: true,
+//       runtimeCaching: [],
+//       disable: process.env.NODE_ENV === 'development',
+//     });
+//     config = withPWA(config);
+//   } catch (error) {
+//     console.warn('PWA configuration skipped:', error.message);
+//   }
+// }
 
 export default config;
 

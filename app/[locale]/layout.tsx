@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin", "cyrillic"] });
 export const metadata: Metadata = {
   title: "Фінансовий Планувальник",
   description: "Платформа для обліку та планування фінансів",
-  manifest: "/manifest.json",
+  manifest: "/fina/manifest.json", // Додаємо basePath до manifest
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
