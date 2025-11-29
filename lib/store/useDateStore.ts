@@ -28,17 +28,20 @@ export const useDateStore = create<DateStore>()(
       return {
         currentMonth: month,
         currentYear: year,
-      
-      setCurrentMonth: (month, year) => {
-        set({ currentMonth: month, currentYear: year });
         
-        // Автоматично завантажуємо дані для нового місяця
-        const transactionStore = useTransactionStore.getState();
-        const planStore = usePlanStore.getState();
-        transactionStore.loadTransactions(month, year);
-        planStore.loadPlan(month, year);
-      },
-    }),
+        setCurrentMonth: (month, year) => {
+          set({ currentMonth: month, currentYear: year });
+          
+          // Автоматично завантажуємо дані для нового місяця
+          if (typeof window !== 'undefined') {
+            const transactionStore = useTransactionStore.getState();
+            const planStore = usePlanStore.getState();
+            transactionStore.loadTransactions(month, year);
+            planStore.loadPlan(month, year);
+          }
+        },
+      };
+    },
     {
       name: 'date-storage',
     }
