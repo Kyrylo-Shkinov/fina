@@ -11,11 +11,23 @@ interface DateStore {
   setCurrentMonth: (month: number, year: number) => void;
 }
 
+// Функція для безпечного отримання поточної дати (тільки на клієнті)
+const getCurrentDate = () => {
+  if (typeof window === 'undefined') {
+    // На сервері повертаємо фіксовану дату
+    return { month: 1, year: 2024 };
+  }
+  const now = new Date();
+  return { month: now.getMonth() + 1, year: now.getFullYear() };
+};
+
 export const useDateStore = create<DateStore>()(
   persist(
-    (set) => ({
-      currentMonth: new Date().getMonth() + 1,
-      currentYear: new Date().getFullYear(),
+    (set) => {
+      const { month, year } = getCurrentDate();
+      return {
+        currentMonth: month,
+        currentYear: year,
       
       setCurrentMonth: (month, year) => {
         set({ currentMonth: month, currentYear: year });
