@@ -184,7 +184,7 @@ export function FixedExpensesStep({
 
       {fixedExpenses.length === 0 && (
         <div className="text-center py-12 text-muted-foreground">
-          <p>Фіксовані витрати необов'язкові. Можете пропустити цей крок.</p>
+          <p>Фіксовані витрати необов&apos;язкові. Можете пропустити цей крок.</p>
         </div>
       )}
     </div>

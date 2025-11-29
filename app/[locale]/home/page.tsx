@@ -52,9 +52,9 @@ export default function HomePage() {
     loadTransactions();
   }, [loadCategories, loadPlan, loadTransactions]);
 
-  const incomes = useMemo(() => getTransactionsByType('income'), [getTransactionsByType, transactions]);
-  const expenses = useMemo(() => getTransactionsByType('expense'), [getTransactionsByType, transactions]);
-  const savings = useMemo(() => getTransactionsByType('savings'), [getTransactionsByType, transactions]);
+  const incomes = useMemo(() => getTransactionsByType('income'), [getTransactionsByType]);
+  const expenses = useMemo(() => getTransactionsByType('expense'), [getTransactionsByType]);
+  const savings = useMemo(() => getTransactionsByType('savings'), [getTransactionsByType]);
 
   const totalIncome = useMemo(
     () => incomes.reduce((sum, t) => sum + t.amount, 0),

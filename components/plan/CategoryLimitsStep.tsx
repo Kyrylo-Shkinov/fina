@@ -247,7 +247,7 @@ export function CategoryLimitsStep({
 
       {categoryLimits.length === 0 && (
         <div className="text-center py-12 text-muted-foreground">
-          <p>Ліміти необов'язкові. Можете пропустити цей крок.</p>
+          <p>Ліміти необов&apos;язкові. Можете пропустити цей крок.</p>
         </div>
       )}
 

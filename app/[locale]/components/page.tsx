@@ -304,7 +304,7 @@ export default function ComponentsPage() {
               <Separator />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Ім'я</Label>
+                  <Label htmlFor="name">Ім&apos;я</Label>
                   <Input id="name" placeholder="Введіть ім'я" />
                 </div>
                 <div className="space-y-2">
