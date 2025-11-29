@@ -84,7 +84,7 @@ export default function HomePage() {
 
   const selectedCategoryData = useMemo(() => {
     if (!selectedCategory) return null;
-    return categories.find((c) => c.id === selectedCategory);
+    return categories.find((c) => c.id === selectedCategory) || null;
   }, [selectedCategory, categories]);
 
   const handleMonthChange = (month: number, year: number) => {
