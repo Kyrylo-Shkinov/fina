@@ -1,0 +1,51 @@
+{
+  "common": {
+    "appName": "Financial Planner",
+    "welcome": "Welcome",
+    "getStarted": "Get Started",
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "name": "Name",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
+    "createAccount": "Create Account",
+    "signIn": "Sign In",
+    "signUp": "Sign Up"
+  },
+  "landing": {
+    "title": "Control Your Finances with Ease",
+    "subtitle": "Plan budgets, track expenses, and achieve financial goals together with your family or group",
+    "features": {
+      "budget": {
+        "title": "Monthly Budget",
+        "description": "Create and plan your monthly budget"
+      },
+      "transactions": {
+        "title": "Transactions",
+        "description": "Track all your income and expenses"
+      },
+      "analytics": {
+        "title": "Analytics",
+        "description": "Analyze your expenses by categories"
+      },
+      "groups": {
+        "title": "Shared Budgets",
+        "description": "Join groups for collaborative planning"
+      }
+    }
+  },
+  "auth": {
+    "loginTitle": "Sign in to your account",
+    "registerTitle": "Create an account",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email format",
+    "passwordRequired": "Password is required",
+    "passwordMin": "Password must be at least 8 characters",
+    "nameRequired": "Name is required",
+    "passwordsMatch": "Passwords must match"
+  }
+}
+
