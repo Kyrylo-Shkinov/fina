@@ -58,7 +58,7 @@ export function LimitRing({
           (e.currentTarget as any).__longPressTriggered = false;
           return;
         }
-        onClick?.(e);
+        onClick?.();
       }}
       onContextMenu={(e) => {
         // Для ПК - правий клік
