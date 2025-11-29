@@ -127,6 +127,7 @@ export function AddTransactionDialog({
       // Транзакції, додані через FAB, завжди мають статус "done"
       await addTransaction({
         ...data,
+        description: data.description || '', // Переконаємося, що description завжди є рядком
         currency: 'UAH',
         status: 'done', // Завжди виконана, бо додається вручну
       });
