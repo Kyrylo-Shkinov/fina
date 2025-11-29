@@ -8,6 +8,7 @@ const withNextIntl = createNextIntlPlugin('./i18n.ts');
 const nextConfig = {
   reactStrictMode: true,
   output: 'export', // Static export для GitHub Pages
+  basePath: '/fina', // Base path для GitHub Pages (назва репозиторію)
   images: {
     unoptimized: true, // Обов'язково для static export
   },
