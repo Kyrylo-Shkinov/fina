@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTransactionStore } from '@/lib/store/useTransactionStore';
 import { useCategoryStore } from '@/lib/store/useCategoryStore';
 import { usePlanStore } from '@/lib/store/usePlanStore';
+import { useDateStore } from '@/lib/store/useDateStore';
 import { SummaryCard } from '@/components/budget/SummaryCard';
 import { LimitRingGroup } from '@/components/budget/LimitRingGroup';
 import { CategoryDetailsModal } from '@/components/budget/CategoryDetailsModal';
@@ -24,9 +25,6 @@ export default function HomePage() {
   
   const {
     transactions,
-    currentMonth,
-    currentYear,
-    setCurrentMonth,
     loadTransactions,
     getTransactionsByType,
     deleteTransaction,
@@ -35,6 +33,7 @@ export default function HomePage() {
   
   const { categories, loadCategories } = useCategoryStore();
   const { currentPlan, loadPlan, calculateFreeMoney } = usePlanStore();
+  const { currentMonth, currentYear, setCurrentMonth } = useDateStore();
 
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
