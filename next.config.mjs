@@ -1,5 +1,7 @@
 import createNextIntlPlugin from 'next-intl/plugin';
+import { createRequire } from 'module';
 
+const require = createRequire(import.meta.url);
 const withNextIntl = createNextIntlPlugin('./i18n.ts');
 
 /** @type {import('next').NextConfig} */
@@ -20,14 +22,19 @@ let config = withNextIntl(nextConfig);
 
 // Додаємо PWA тільки в production
 if (process.env.NODE_ENV === 'production') {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const withPWA = require('next-pwa')({
-    dest: 'public',
-    register: true,
-    skipWaiting: true,
-    runtimeCaching: [], // Без офлайн кешування
-  });
-  config = withPWA(config);
+  try {
+    const withPWA = require('next-pwa')({
+      dest: 'public',
+      register: true,
+      skipWaiting: true,
+      runtimeCaching: [], // Без офлайн кешування
+      disable: process.env.NODE_ENV === 'development',
+    });
+    config = withPWA(config);
+  } catch (error) {
+    // Якщо next-pwa не встановлено або є помилка, продовжуємо без PWA
+    console.warn('PWA configuration skipped:', error.message);
+  }
 }
 
 export default config;
