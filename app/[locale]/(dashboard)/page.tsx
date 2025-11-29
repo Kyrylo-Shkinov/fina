@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'error';
+
 import { useEffect, useMemo, useState } from 'react';
 import { useTransactionStore } from '@/lib/store/useTransactionStore';
 import { useCategoryStore } from '@/lib/store/useCategoryStore';

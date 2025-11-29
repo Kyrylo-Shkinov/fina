@@ -65,8 +65,8 @@ export const usePlanStore = create<PlanStore>()(
         try {
           const plan: Plan = {
             ...planData,
-            id: planData.id || `plan_${planData.year}_${planData.month}`,
-            createdAt: planData.createdAt || new Date().toISOString(),
+            id: (planData as any).id || `plan_${planData.year}_${planData.month}`,
+            createdAt: (planData as any).createdAt || new Date().toISOString(),
             updatedAt: new Date().toISOString(),
           };
           await db.savePlan(plan);

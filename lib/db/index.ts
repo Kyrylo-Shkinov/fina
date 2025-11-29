@@ -8,7 +8,8 @@ export async function getTransactions(
   year?: number
 ): Promise<Transaction[]> {
   try {
-    let query = supabase.from('transactions').select('*');
+    // @ts-ignore - Supabase types are not fully configured
+    let query = (supabase as any).from('transactions').select('*');
 
     if (month && year) {
       // Фільтрація по місяцю та року
@@ -43,7 +44,8 @@ export async function getTransactions(
 
 export async function addTransaction(transaction: Transaction): Promise<void> {
   try {
-    const { error } = await supabase.from('transactions').insert({
+    // @ts-ignore - Supabase types are not fully configured
+    const { error } = await (supabase as any).from('transactions').insert({
       id: transaction.id,
       type: transaction.type,
       amount: transaction.amount,
@@ -83,7 +85,8 @@ export async function updateTransaction(
     if (updates.currency !== undefined) updateData.currency = updates.currency;
     if (updates.status !== undefined) updateData.status = updates.status;
 
-    const { error } = await supabase
+    // @ts-ignore - Supabase types are not fully configured
+    const { error } = await (supabase as any)
       .from('transactions')
       .update(updateData)
       .eq('id', id);
@@ -118,7 +121,8 @@ export async function deleteTransaction(id: string): Promise<void> {
 // Categories CRUD
 export async function getCategories(): Promise<Category[]> {
   try {
-    const { data, error } = await supabase
+    // @ts-ignore - Supabase types are not fully configured
+    const { data, error } = await (supabase as any)
       .from('categories')
       .select('*')
       .order('name');
@@ -129,7 +133,7 @@ export async function getCategories(): Promise<Category[]> {
     }
 
     // Маппимо limits_by_period якщо воно є
-    return (data || []).map((c) => ({
+    return (data || []).map((c: any) => ({
       id: c.id,
       name: c.name,
       icon: c.icon || '💰',
@@ -147,7 +151,8 @@ export async function getCategories(): Promise<Category[]> {
 
 export async function addCategory(category: Category): Promise<void> {
   try {
-    const { error } = await supabase.from('categories').insert({
+    // @ts-ignore - Supabase types are not fully configured
+    const { error } = await (supabase as any).from('categories').insert({
       id: category.id,
       name: category.name,
       icon: category.icon || '💰',
@@ -156,7 +161,7 @@ export async function addCategory(category: Category): Promise<void> {
       monthly_limit: category.monthlyLimit || null,
       limits_by_period: category.limitsByPeriod || null,
       distribution_type: category.distributionType || null,
-    });
+    } as any);
 
     if (error) {
       console.error('Error adding category:', error);
@@ -183,7 +188,8 @@ export async function updateCategory(
     if (updates.limitsByPeriod !== undefined) updateData.limits_by_period = updates.limitsByPeriod;
     if (updates.distributionType !== undefined) updateData.distribution_type = updates.distributionType;
 
-    const { error } = await supabase
+    // @ts-ignore - Supabase types are not fully configured
+    const { error } = await (supabase as any)
       .from('categories')
       .update(updateData)
       .eq('id', id);
@@ -200,7 +206,8 @@ export async function updateCategory(
 
 export async function deleteCategory(id: string): Promise<void> {
   try {
-    const { error } = await supabase
+    // @ts-ignore - Supabase types are not fully configured
+    const { error } = await (supabase as any)
       .from('categories')
       .delete()
       .eq('id', id);
@@ -221,7 +228,8 @@ export async function getPlan(
   year: number
 ): Promise<Plan | null> {
   try {
-    const { data, error } = await supabase
+    // @ts-ignore - Supabase types are not fully configured
+    const { data, error } = await (supabase as any)
       .from('plans')
       .select('*')
       .eq('year', year)
@@ -257,7 +265,8 @@ export async function getPlan(
 
 export async function savePlan(plan: Plan): Promise<void> {
   try {
-    const { error } = await supabase.from('plans').upsert({
+    // @ts-ignore - Supabase types are not fully configured
+    const { error } = await (supabase as any).from('plans').upsert({
       id: plan.id,
       month: plan.month,
       year: plan.year,
@@ -265,7 +274,7 @@ export async function savePlan(plan: Plan): Promise<void> {
       fixed_expenses: plan.fixedExpenses,
       category_limits: plan.categoryLimits,
       updated_at: new Date().toISOString(),
-    }, {
+    } as any, {
       onConflict: 'id',
     });
 
@@ -281,7 +290,8 @@ export async function savePlan(plan: Plan): Promise<void> {
 
 export async function deletePlan(id: string): Promise<void> {
   try {
-    const { error } = await supabase
+    // @ts-ignore - Supabase types are not fully configured
+    const { error } = await (supabase as any)
       .from('plans')
       .delete()
       .eq('id', id);

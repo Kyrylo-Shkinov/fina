@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'error';
+
 // Базовий екран категорій
 export default function CategoriesPage() {
   return (

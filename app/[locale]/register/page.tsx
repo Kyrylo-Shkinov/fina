@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'error';
+
 import { useTranslations, useLocale } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
