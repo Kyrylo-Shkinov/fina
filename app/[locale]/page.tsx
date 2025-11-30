@@ -1,15 +1,21 @@
-import { redirect } from 'next/navigation';
+'use client';
 
-export const dynamic = 'force-static';
+import { useEffect } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 
-export default async function HomePage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
+export const dynamic = 'error';
+
+export default function HomePage() {
+  const router = useRouter();
+  const pathname = usePathname();
   
-  // Просто редиректимо на home сторінку
-  redirect(`/${locale}/home`);
+  useEffect(() => {
+    // Витягуємо locale з pathname
+    const locale = pathname?.split('/')[1] || 'uk';
+    router.replace(`/${locale}/home`);
+  }, [router, pathname]);
+  
+  // Не рендеримо нічого - просто редирект
+  return null;
 }
 

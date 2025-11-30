@@ -12,10 +12,15 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const { theme } = useThemeStore();
 
   useEffect(() => {
-    // Застосовуємо тему при завантаженні
-    if (typeof window !== 'undefined') {
-      document.documentElement.classList.remove('light', 'dark');
-      document.documentElement.classList.add(theme);
+    // Застосовуємо тему при завантаженні, але тільки після монтування
+    if (typeof window !== 'undefined' && document.documentElement) {
+      // Використовуємо requestAnimationFrame для безпечного оновлення DOM
+      requestAnimationFrame(() => {
+        if (document.documentElement) {
+          document.documentElement.classList.remove('light', 'dark');
+          document.documentElement.classList.add(theme);
+        }
+      });
     }
   }, [theme]);
 
