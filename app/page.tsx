@@ -31,4 +31,3 @@ export default function RootPage() {
   // Не рендеримо нічого - просто редирект
   return null;
 }
-
